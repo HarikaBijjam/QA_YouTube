@@ -1,6 +1,5 @@
 package demo.utils;
 
-
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -26,17 +25,17 @@ public class ExcelReaderUtil {
             for (int i = rowNum; i <= totalRows; i++) {
                 Row row = sheet.getRow(i);
                 List<Object> columns = new ArrayList<>();
-                
+
                 // for (int j = row.getFirstCellNum(); j < findLastNonBlankColumn(row); j++) {
                 Cell cell = row.getCell(0);
                 columns.add(getCellValue(cell));
                 // }
-                
+
                 records.add(columns.toArray());
             }
 
             workbook.close();
-            System.out.println("Here is the data: "+records.toString());
+            System.out.println("Here is the data: " + records.toString());
             return records.toArray(new Object[0][]);
 
         } catch (Exception e) {
@@ -44,6 +43,7 @@ public class ExcelReaderUtil {
             return null;
         }
     }
+
     // Find the last non-blank row in a sheet
     public static int findLastNonBlankRow(Sheet sheet) {
         int lastNonBlankRowNum = -1;
@@ -82,7 +82,7 @@ public class ExcelReaderUtil {
         }
         return true;
     }
-    
+
     private static Object getCellValue(Cell cell) {
         switch (cell.getCellType()) {
             case STRING:
